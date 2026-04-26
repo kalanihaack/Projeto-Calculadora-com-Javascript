@@ -2,22 +2,22 @@ class calcController {
 
     constructor() {
         this._displayCalc = "0"
-        this._dataAtual
+        this._actualDate
     }
 
     get displayCalc() {
         return this._displayCalc
     }
 
-    set displayCalc(valor) {
-        this._displayCalc = valor
+    set displayCalc(value) {
+        this._displayCalc = value
     }
 
-    get dataAtual() {
-        return this._dataAtual
+    get actualDate() {
+        return this._actualDate
     }
 
-    set dataAtual(valor) {
-        this._dataAtual = valor
+    set actualDate(value) {
+        this._actualDate = value
     }
 }
