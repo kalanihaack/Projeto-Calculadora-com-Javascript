@@ -22,6 +22,11 @@ class calcController {
 
     }
 
+    initButtonsEvents() {
+
+        document.querySelectorAll("#buttons > g, #parts > g")
+    }
+
     setDisplayTime(){
 
             this.displayDate = this.currentDate.toLocaleDateString(this._locale,{
