@@ -7,7 +7,7 @@ class calcController {
         this._timeEl = document.querySelector("#hora")
         this._currentDate
         this.initialize()
-        this._locale = 'pt-br' //variavel para informar o pais que sera puxado os dados
+        this._locale = "pt-br" //variavel para informar o pais que sera puxado os dados
         this.initButtonsEvents()
     }
 
@@ -23,16 +23,29 @@ class calcController {
 
     }
 
+    addEventListenerAll(element, events, fn){
+
+        events.split(" ").forEach(event => {
+            element.addEventListener(event, fn, false)
+        })  //criamos uma funcao que pega os elementos (botao) eventos (do mouse e teclado) e a funcao que vem com isso ()
+            //colocamos um split para ele separar cada evento, e criamos um foreach com uma funcao que faz um eventlistener separado para cada evento
+
+    }
+
     initButtonsEvents() {
 
         let buttons = document.querySelectorAll("#buttons > g, #parts > g")
 
         buttons.forEach((btn, index)=>{
 
-            btn.addEventListener('click', e => {
+            this.addEventListenerAll(btn, "click drag", e => {
 
-                console.log(btn.className.baseVal.replace("btn-", "")) //
+                console.log(btn.className.baseVal.replace("btn-", ""))  //evento que escuta os cliques do mouse e retorna no console
 
+            })
+
+            this.addEventListenerAll(btn, "mouseover mouseup mousedown", e => {
+                btn.style.cursor = "pointer" //evento que faz o ponteiro mudar o estilo quando passa por cima do botao
             })
         })
     }
