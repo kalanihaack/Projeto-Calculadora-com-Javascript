@@ -8,6 +8,7 @@ class calcController {
         this._currentDate
         this.initialize()
         this._locale = 'pt-br' //variavel para informar o pais que sera puxado os dados
+        this.initButtonsEvents()
     }
 
     initialize() {
@@ -24,18 +25,27 @@ class calcController {
 
     initButtonsEvents() {
 
-        document.querySelectorAll("#buttons > g, #parts > g")
+        let buttons = document.querySelectorAll("#buttons > g, #parts > g")
+
+        buttons.forEach((btn, index)=>{
+
+            btn.addEventListener('click', e => {
+
+                console.log(btn.className.baseVal.replace("btn-", "")) //
+
+            })
+        })
     }
 
-    setDisplayTime(){
+    setDisplayTime() {
 
-            this.displayDate = this.currentDate.toLocaleDateString(this._locale,{
-                day: "2-digit",
-                month: "long",
-                year: "numeric"
-            })
+        this.displayDate = this.currentDate.toLocaleDateString(this._locale, {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        })
 
-            this.displayTime = this.currentDate.toLocaleTimeString(this._locale)
+        this.displayTime = this.currentDate.toLocaleTimeString(this._locale)
 
     }
 
