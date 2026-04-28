@@ -2,6 +2,7 @@ class calcController {
 
     constructor() {
 
+        this._operation = []
         this._displayCalcEl = document.querySelector("#display")
         this._dateEl = document.querySelector("#data")
         this._timeEl = document.querySelector("#hora")
@@ -23,7 +24,7 @@ class calcController {
 
     }
 
-    addEventListenerAll(element, events, fn){
+    addEventListenerAll(element, events, fn) {
 
         events.split(" ").forEach(event => {
             element.addEventListener(event, fn, false)
@@ -32,15 +33,88 @@ class calcController {
 
     }
 
+    clearAll() {
+        this._operation = [] //retorna array vazio para limpar
+    }
+
+    clearEntry() {
+        this._operation.pop() //pop limpa a ultima adicao no array
+    }
+
+    addOperation(value) {
+        this._operation.push(value) //push adiciona mais uma informacao ao array
+        console.log(this._operation)
+    }
+
+    setError() {
+        this.displayCalc = "error"
+    }
+
+    execBtn(value) {
+        switch (value) {
+            case 'ac':
+                this.clearAll()
+                break
+
+            case 'ce':
+                this.clearEntry()
+                break
+
+            case 'soma':
+
+                break
+
+            case 'subtracao':
+
+                break
+
+            case 'divisao':
+
+                break
+
+            case 'multiplicacao':
+
+                break
+
+            case 'porcento':
+
+                break
+
+            case 'igual':
+
+                break
+
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                this.addOperation(parseInt(value))
+                break
+
+            default:
+                this.setError() //retorna erro caso nenhum dos cases acima de resultado
+                break
+
+
+        }
+    }
+
     initButtonsEvents() {
 
         let buttons = document.querySelectorAll("#buttons > g, #parts > g")
 
-        buttons.forEach((btn, index)=>{
+        buttons.forEach((btn, index) => {
 
             this.addEventListenerAll(btn, "click drag", e => {
 
-                console.log(btn.className.baseVal.replace("btn-", ""))  //evento que escuta os cliques do mouse e retorna no console
+                let textBtn = btn.className.baseVal.replace("btn-", "")
+                this.execBtn(textBtn)
 
             })
 
