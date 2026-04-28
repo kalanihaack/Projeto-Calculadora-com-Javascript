@@ -41,8 +41,44 @@ class calcController {
         this._operation.pop() //pop limpa a ultima adicao no array
     }
 
+
+    getLastOperation() {
+        return this._operation[this._operation.length-1]
+    }
+
+    setLastOperation(value){
+        this._operation[this._operation.length-1] = value
+    }
+
+    isOperator(value){
+
+        return (["+", "-", "*", "%", "/",].indexOf(value) > -1) //busca se o valor é igual e traz o index
+      
+    }
+
     addOperation(value) {
-        this._operation.push(value) //push adiciona mais uma informacao ao array
+        
+        console.log(isNaN(this.getLastOperation()))
+
+        if (isNaN(this.getLastOperation())){ //se o lastoperation nao for um numero
+            
+            if (this.isOperator(value)) {
+                this.setLastOperation(value)
+            }
+
+            else if(isNaN(value)) {
+                console.log(value)
+
+            }
+            else {
+               this._operation.push(value) 
+            }
+        }
+        else {
+            let newValue = this.getLastOperation().toString() + value.toString()
+            this.setLastOperation(parseInt(newValue))
+        }
+
         console.log(this._operation)
     }
 
@@ -61,27 +97,31 @@ class calcController {
                 break
 
             case 'soma':
-
+                this.addOperation("+")
                 break
 
             case 'subtracao':
-
+                this.addOperation("-")
                 break
 
             case 'divisao':
-
+                this.addOperation("/")
                 break
 
             case 'multiplicacao':
-
+                this.addOperation("*")
                 break
 
             case 'porcento':
-
+                this.addOperation("%")
                 break
 
             case 'igual':
 
+                break
+
+            case "ponto":
+                this.addOperation(".")    
                 break
 
             case '0':
