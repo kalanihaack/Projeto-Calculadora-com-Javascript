@@ -43,11 +43,11 @@ class calcController {
 
 
     getLastOperation() {
-        return this._operation[this._operation.length - 1] 
+        return this._operation[this._operation.length-1] 
     }
 
     setLastOperation(value) {
-        this._operation[this._operation.length - 1] = value 
+        this._operation[this._operation.length-1] = value 
     }
 
     isOperator(value) {
@@ -72,15 +72,24 @@ class calcController {
             
             this._operation = [result, last] //retorna as duas variaveis de cima
 
+            this.setLastNumberToDisplay()
+
     }
 
-    setLastNumberToDisplay(){
+    setLastNumberToDisplay(){  //funcao para mostrarmos os numeros na tela de acordo com a operacao
+        let lastNumber 
 
+        for (let i = this._operation.length-1; i >=0; i--){
+            if (!this.isOperator(this._operation[i])) {
+                lastNumber = this._operation[i]
+                break
+            }
+        }
+
+        this.displayCalc = lastNumber //mostra a variavel lastNumber na tela
     }
 
     addOperation(value) {
-
-        console.log(value, isNaN(this.getLastOperation()))
 
         if (isNaN(this.getLastOperation())) { //se o lastoperation nao for um numero
 
@@ -94,6 +103,7 @@ class calcController {
             }
             else {
                 this.pushOperation(value)
+                this.setLastNumberToDisplay() //passando por toda operacao, retorna o que foi apertado na calculadora e aparece no display
             }
         }
         
@@ -105,9 +115,9 @@ class calcController {
 
             else {
                 let newValue = this.getLastOperation().toString() + value.toString()
-                this.setLastOperation(parseInt(newValue))
+                this.setLastOperation(parseInt(newValue)) 
+                this.setLastNumberToDisplay(); 
 
-                this.setLastNumberToDisplay() //passando por toda operacao, retorna o que foi apertado na calculadora e aparece no display
             }
         }
 
