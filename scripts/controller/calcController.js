@@ -29,7 +29,7 @@ class calcController {
         events.split(" ").forEach(event => {
             element.addEventListener(event, fn, false)
         })  //criamos uma funcao que pega os elementos (botao) eventos (do mouse e teclado) e a funcao que vem com isso ()
-            //colocamos um split para ele separar cada evento, e criamos um foreach com uma funcao que faz um eventlistener separado para cada evento
+        //colocamos um split para ele separar cada evento, e criamos um foreach com uma funcao que faz um eventlistener separado para cada evento
 
     }
 
@@ -43,40 +43,72 @@ class calcController {
 
 
     getLastOperation() {
-        return this._operation[this._operation.length-1]
+        return this._operation[this._operation.length - 1] 
     }
 
-    setLastOperation(value){
-        this._operation[this._operation.length-1] = value
+    setLastOperation(value) {
+        this._operation[this._operation.length - 1] = value 
     }
 
-    isOperator(value){
+    isOperator(value) {
 
         return (["+", "-", "*", "%", "/",].indexOf(value) > -1) //busca se o valor é igual e traz o index
-      
+
+    }
+
+    pushOperation(value){
+        this._operation.push(value)
+
+        if (this._operation.length > 3) {            
+            this.calc()
+        }
+        
+    }
+
+    calc(){
+            let last = this._operation.pop() //varival que guarda o ultimo valor digitado
+            
+            let result = eval(this._operation.join("")) //variavel que transforma o resultado de um array para uma string
+            
+            this._operation = [result, last] //retorna as duas variaveis de cima
+
+    }
+
+    setLastNumberToDisplay(){
+
     }
 
     addOperation(value) {
-        
-        console.log(isNaN(this.getLastOperation()))
 
-        if (isNaN(this.getLastOperation())){ //se o lastoperation nao for um numero
-            
+        console.log(value, isNaN(this.getLastOperation()))
+
+        if (isNaN(this.getLastOperation())) { //se o lastoperation nao for um numero
+
             if (this.isOperator(value)) {
                 this.setLastOperation(value)
             }
 
-            else if(isNaN(value)) {
-                console.log(value)
+            else if (isNaN(value)) {
+                console.log(teste1)
 
             }
             else {
-               this._operation.push(value) 
+                this.pushOperation(value)
             }
         }
+        
         else {
-            let newValue = this.getLastOperation().toString() + value.toString()
-            this.setLastOperation(parseInt(newValue))
+
+            if (this.isOperator(value)) {
+                this.pushOperation(value)
+            }
+
+            else {
+                let newValue = this.getLastOperation().toString() + value.toString()
+                this.setLastOperation(parseInt(newValue))
+
+                this.setLastNumberToDisplay() //passando por toda operacao, retorna o que foi apertado na calculadora e aparece no display
+            }
         }
 
         console.log(this._operation)
@@ -121,7 +153,7 @@ class calcController {
                 break
 
             case "ponto":
-                this.addOperation(".")    
+                this.addOperation(".")
                 break
 
             case '0':
