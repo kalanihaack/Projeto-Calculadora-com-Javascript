@@ -22,6 +22,8 @@ class calcController {
 
         }, 1000) //funcao para atualizar a data e hora a cada 1000ms
 
+        this.setLastNumberToDisplay()
+
     }
 
     addEventListenerAll(element, events, fn) {
@@ -35,10 +37,12 @@ class calcController {
 
     clearAll() {
         this._operation = [] //retorna array vazio para limpar
+        this.setLastNumberToDisplay()
     }
 
     clearEntry() {
         this._operation.pop() //pop limpa a ultima adicao no array
+        this.setLastNumberToDisplay()
     }
 
 
@@ -66,11 +70,30 @@ class calcController {
     }
 
     calc(){
-            let last = this._operation.pop() //varival que guarda o ultimo valor digitado
+
+            let last = ""
+
+            if (this._operation.length > 3) 
+                last = this._operation.pop()
             
+
             let result = eval(this._operation.join("")) //variavel que transforma o resultado de um array para uma string
+
+            if (last == "%") {
+
+                result /= 100
+                
+                this._operation = [result]
+
+            } else {
+
+                this._operation = [result] //retorna as duas variaveis de cima
+
+                if (last) this._operation.push(last)
+                
+            }
             
-            this._operation = [result, last] //retorna as duas variaveis de cima
+
 
             this.setLastNumberToDisplay()
 
@@ -86,6 +109,7 @@ class calcController {
             }
         }
 
+        if (!lastNumber) lastNumber = 0
         this.displayCalc = lastNumber //mostra a variavel lastNumber na tela
     }
 
@@ -159,7 +183,7 @@ class calcController {
                 break
 
             case 'igual':
-
+                this.calc()
                 break
 
             case "ponto":
