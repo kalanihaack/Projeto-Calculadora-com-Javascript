@@ -39,6 +39,9 @@ class calcController {
 
     clearAll() {
         this._operation = [] //retorna array vazio para limpar
+        this._lastNumber = ""
+        this._lastOperator = ""
+
         this.setLastNumberToDisplay()
     }
 
@@ -105,7 +108,7 @@ class calcController {
 
             if (last == "%") {
 
-                result /= 100
+                result /= 100 //divide a operacao em 100 para termos a porcentagem
                 
                 this._operation = [result]
 
@@ -119,17 +122,17 @@ class calcController {
             
 
 
-            this.setLastNumberToDisplay()
+            this.setLastNumberToDisplay() //mostra o ultimo numero no display
 
     }
 
     getLastItem(isOperator = true){
 
-            let lastItem
+            let lastItem 
 
             for (let i = this._operation.length-1; i >=0; i--){
 
-            if (this.isOperator(this._operation[i]) == isOperator) {
+            if (this.isOperator(this._operation[i]) == isOperator) { 
                 lastItem = this._operation[i]
                 break}  
             }
@@ -160,10 +163,6 @@ class calcController {
                 this.setLastOperation(value)
             }
 
-            else if (isNaN(value)) {
-                console.log(teste1)
-
-            }
             else {
                 this.pushOperation(value)
                 this.setLastNumberToDisplay() //passando por toda operacao, retorna o que foi apertado na calculadora e aparece no display
@@ -178,7 +177,7 @@ class calcController {
 
             else {
                 let newValue = this.getLastOperation().toString() + value.toString()
-                this.setLastOperation(parseInt(newValue)) 
+                this.setLastOperation(parseFloat(newValue)) 
                 this.setLastNumberToDisplay(); 
 
             }
@@ -186,6 +185,21 @@ class calcController {
 
         console.log(this._operation)
     }
+
+    addDot() {
+
+        let lastOperation = this.getLastOperation()
+
+        if(this.isOperator(lastOperation) || !lastOperation) {
+            this.pushOperation("0.")
+        } 
+        else {
+            this.setLastOperation(lastOperation.toString() + ".")
+        }
+
+        this.setLastNumberToDisplay()
+    }
+
 
     setError() {
         this.displayCalc = "error"
@@ -226,7 +240,7 @@ class calcController {
                 break
 
             case "ponto":
-                this.addOperation(".")
+                this.addDot("")
                 break
 
             case '0':
