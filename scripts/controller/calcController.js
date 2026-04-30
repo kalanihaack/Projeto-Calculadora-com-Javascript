@@ -177,7 +177,7 @@ class calcController {
 
             else {
                 let newValue = this.getLastOperation().toString() + value.toString()
-                this.setLastOperation(parseFloat(newValue)) 
+                this.setLastOperation(newValue)
                 this.setLastNumberToDisplay(); 
 
             }
@@ -190,6 +190,9 @@ class calcController {
 
         let lastOperation = this.getLastOperation()
 
+        if (typeof lastOperation === "string" && lastOperation.split("").indexOf(".") > -1) return //se tentar usar o ponto mais de uma vez, ele nao permite
+
+        
         if(this.isOperator(lastOperation) || !lastOperation) {
             this.pushOperation("0.")
         } 
