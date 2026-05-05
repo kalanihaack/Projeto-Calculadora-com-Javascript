@@ -416,6 +416,13 @@ class calcController {
     }
 
     set displayCalc(value) {
+
+        let stringValue = value.toString()
+
+        if (stringValue.length > 10) {
+            value =parseFloat(value).toExponential(4)
+        }
+    
         this._displayCalcEl.innerHTML = value
     }
 
