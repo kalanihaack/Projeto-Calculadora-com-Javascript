@@ -2,6 +2,9 @@ class calcController {
 
     constructor() {
 
+        this._audio = new Audio("click.mp3")
+        this._btnAudio = document.querySelector("#btn-audio")
+        this._audioOnOff = false
         this._lastOperator = ""
         this._lastNumber = ""
         this._operation = []
@@ -55,11 +58,35 @@ class calcController {
         this.setLastNumberToDisplay()
         this.pasteFromClipboard()
 
+        if (this._btnAudio) {
+            this._btnAudio.addEventListener("click", e=>{ //funcao para quando eu apertar no icone de som, ele ligar ou desligar
+                
+                this.toggleAudio()
+                this._audio.currentTime = 0
+                this._audio.play()
+            })
+        }
+    }
+
+    toggleAudio(){
+
+        this._audioOnOff = !this._audioOnOff //por ser booleano, se ele estiver ligado, ira desligar
+    }
+
+    playAudio(){
+
+        if(this._audioOnOff) {
+
+            this._audio.currentTime = 0
+            this._audio.play()
+        }
     }
 
     initKeyboard(){
 
         document.addEventListener("keyup", e=> {
+            
+            this.playAudio()
 
             switch (e.key) {
             
@@ -292,6 +319,9 @@ class calcController {
     }
 
     execBtn(value) {
+
+        this.playAudio()
+
         switch (value) {
             case 'ac':
                 this.clearAll()
