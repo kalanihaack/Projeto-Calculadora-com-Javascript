@@ -25,8 +25,6 @@ Suporte a Teclado: Captura de eventos para utilização via teclado numérico.
 
 Memória de Operação: Capacidade de encadear múltiplas operações.
 
-📁 Estrutura de Pastas
-Plaintext
 ├── assets/             # Arquivos de imagem e áudio
 ├── scripts/
 │   ├── controller/     # Lógica principal (calcController.js)
