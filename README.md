@@ -25,22 +25,24 @@ Suporte a Teclado: Captura de eventos para utilização via teclado numérico.
 
 Memória de Operação: Capacidade de encadear múltiplas operações.
 
-├── assets/             # Arquivos de imagem e áudio
+`├── assets/             # Arquivos de imagem e áudio
 ├── scripts/
 │   ├── controller/     # Lógica principal (calcController.js)
 │   └── calculator.js   # Instanciação da classe principal
 ├── index.html          # Estrutura HTML
-└── digital-7.ttf       # Fonte digital para o visor
+└── digital-7.ttf       # Fonte digital para o visor`
 
 
 💻 Como Executar o Projeto
+
+
 Clone o repositório via terminal:
 
-git clone https://github.com/kalanihaack/projeto-calculadora-com-javascript
+`git clone https://github.com/kalanihaack/projeto-calculadora-com-javascript`
 
 Navegue até a pasta do projeto:
 
-cd projeto-calculadora-com-javascript
+`cd projeto-calculadora-com-javascript`
 
 Abra o arquivo index.html em seu navegador e ja estará em pleno funcionamento.
 
