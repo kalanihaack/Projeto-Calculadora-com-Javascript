@@ -1,64 +1,29 @@
-🧮 Projeto Calculadora com JavaScript
-Este projeto é uma calculadora funcional inspirada no design da calculadora padrão do Windows, desenvolvida para fins de estudo de lógica de programação, manipulação do DOM e arquitetura de software (padrão MVC).
+# Calculadora em JavaScript 🧮
 
-🚀 Tecnologias Utilizadas
-HTML5: Estruturação da interface.
+Este projeto consiste numa réplica da interface de uma calculadora, desenvolvida com as tecnologias web fundamentais: HTML, CSS e JavaScript. O projeto foca-se fortemente na **Orientação a Objetos** em JavaScript, aplicando conceitos de estruturação limpa através de um Controlador.
 
-CSS3: Estilização e layout.
+## 🚀 Funcionalidades
 
-JavaScript (ES6+): Toda a lógica de funcionamento, tratamento de eventos e cálculos.
+- **Operações Básicas:** Adição, subtração, multiplicação e divisão, bem como cálculos percentuais, frações e afins.
+- **Ecrã Dinâmico:** Atualização em tempo real do ecrã da calculadora, incluindo a formatação dos números.
+- **Data e Hora:** O ecrã apresenta a data e a hora atuais, com atualização constante em tempo real.
+- **Efeitos Sonoros:** Integração de um ficheiro de áudio (`click.mp3`) para fornecer feedback sonoro ao utilizador sempre que um botão é pressionado (pode ser ativado/desativado).
+- **Gestão de Eventos (Teclado e Mouse):** Tratamento avançado de múltiplos eventos, suportando interação através de cliques no mouse ou através do teclado numérico (Numpad).
+- **Design Fiel:** Estilização meticulosa baseada em calculadoras reais, utilizando uma tipografia customizada (`digital-7.ttf`) para recriar o aspeto clássico de um display de cristais líquidos.
 
-Padrão MVC (Model-View-Controller): Utilizado para organizar o código de forma escalável e profissional.
+## 🛠️ Tecnologias Utilizadas
 
-✨ Funcionalidades
-Operações Básicas: Soma, subtração, multiplicação e divisão.
+- **HTML5:** Semântica e estruturação dos botões e painel.
+- **CSS3:** Estilização visual, grelhas (se aplicável), e importação de fontes customizadas (`@font-face`).
+- **JavaScript (ES6+):** Lógica da aplicação utilizando Classes (`class CalcController`), encapsulamento, métodos `get` e `set`, manipulação do DOM (Document Object Model) e controlo de áudio nativo.
 
-Cálculo de Porcentagem: Funcionalidade integrada para cálculos rápidos.
+## 📁 Estrutura de Ficheiros
 
-Data e Hora: Exibição em tempo real da data e hora atual no visor.
+O projeto encontra-se organizado da seguinte forma:
 
-Efeitos Sonoros: Feedback sonoro ao clicar nos botões (arquivo click.mp3).
-
-Interface Responsiva: Design limpo e intuitivo.
-
-Suporte a Teclado: Captura de eventos para utilização via teclado numérico.
-
-Memória de Operação: Capacidade de encadear múltiplas operações.
-
-`├── assets/             # Arquivos de imagem e áudio
-├── scripts/
-│   ├── controller/     # Lógica principal (calcController.js)
-│   └── calculator.js   # Instanciação da classe principal
-├── index.html          # Estrutura HTML
-└── digital-7.ttf       # Fonte digital para o visor`
-
-
-💻 Como Executar o Projeto
-
-
-Clone o repositório via terminal:
-
-`git clone https://github.com/kalanihaack/projeto-calculadora-com-javascript`
-
-Navegue até a pasta do projeto:
-
-`cd projeto-calculadora-com-javascript`
-
-Abra o arquivo index.html em seu navegador e ja estará em pleno funcionamento.
-
-
-🧠 Aprendizados Obtidos
-Durante o desenvolvimento deste projeto, foram aplicados conceitos avançados de JavaScript, como:
-
-Classes e Encapsulamento: Uso de getters e setters.
-
-Manipulação de Data: Utilização do objeto Date e métodos de formatação local (toLocaleDateString).
-
-Eventos do DOM: Manipulação de múltiplos eventos simultâneos (click, drag, etc.).
-
-Áudio em JS: Implementação de recursos multimídia via código.
-
-
-
-
-Desenvolvido para fins educacionais por: Kalani Haack
+* **`/scripts/controller/calcController.js`**: O coração da aplicação. Contém a classe principal que gere toda a lógica de negócio, processamento dos cálculos, atualização do ecrã, e os *event listeners*.
+* **`/scripts/calculator.js`**: O ficheiro de inicialização, responsável por instanciar a nossa classe controladora e dar vida à calculadora.
+* **`index.html`**: A vista principal (View) que contém a estrutura gráfica da calculadora.
+* **`click.mp3`**: O ficheiro de som que simula o "clique" das teclas.
+* **`digital-7.ttf`**: Ficheiro da fonte de texto utilizada no ecrã.
+* **`logo.png`**: Imagem de apoio para os ícones ou interface do projeto.
